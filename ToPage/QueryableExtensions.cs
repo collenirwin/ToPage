@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ToPage
@@ -6,13 +7,16 @@ namespace ToPage
     public static class QueryableExtensions
     {
         public static Page<T> ToPage<T>(this IOrderedQueryable<T> query, int pageNumber, int itemsPerPage)
+            => ToPage(query, pageNumber, itemsPerPage, Enumerable.ToList);
+
+        public static Page<T> ToPage<T>(this IOrderedQueryable<T> query, int pageNumber, int itemsPerPage,
+            Func<IQueryable<T>, IEnumerable<T>> itemsEnumerator)
         {
             AssertValidToPageArgs(query, pageNumber, itemsPerPage);
 
-            var items = query
+            var items = itemsEnumerator(query
                 .Skip((pageNumber - 1) * itemsPerPage)
-                .Take(itemsPerPage)
-                .ToList();
+                .Take(itemsPerPage));
 
             return new Page<T>(items, pageNumber);
         }
