@@ -72,6 +72,36 @@ namespace ToPage.Tests
             Assert.Throws<ArgumentOutOfRangeException>(() => _ = query.ToPage(pageNumber, itemsPerPage));
         }
 
+        [Fact]
+        public void Gets_Leftover_Items_On_Last_Page()
+        {
+            // arrange
+            var query = GetBasicOrderedQuery();
+            int pageNumber = 7;
+            int itemsPerPage = 15;
+
+            // act
+            var page = query.ToPage(pageNumber, itemsPerPage);
+
+            // assert
+            Assert.Equal(10, page.Items.Count());
+        }
+
+        [Fact]
+        public void Gets_0_Items_When_PageNumber_Is_Too_High()
+        {
+            // arrange
+            var query = GetBasicOrderedQuery();
+            int pageNumber = 1000;
+            int itemsPerPage = 10;
+
+            // act
+            var page = query.ToPage(pageNumber, itemsPerPage);
+
+            // assert
+            Assert.Empty(page.Items);
+        }
+
         private IOrderedQueryable<int> GetBasicOrderedQuery()
             => Enumerable.Range(1, 100)
                 .AsQueryable()
