@@ -12,7 +12,7 @@ namespace ToPage
         public static Page<T> ToPage<T>(this IOrderedQueryable<T> query, int pageNumber, int itemsPerPage,
             Func<IQueryable<T>, IEnumerable<T>> itemsEnumerator)
         {
-            AssertValidToPageArgs(query, pageNumber, itemsPerPage);
+            AssertValidToPageArgs(query, pageNumber, itemsPerPage, itemsEnumerator);
 
             var items = itemsEnumerator(query
                 .Skip((pageNumber - 1) * itemsPerPage)
@@ -21,9 +21,11 @@ namespace ToPage
             return new Page<T>(items, pageNumber);
         }
 
-        private static void AssertValidToPageArgs<T>(IOrderedQueryable<T> query, int pageNumber, int itemsPerPage)
+        private static void AssertValidToPageArgs<T>(IOrderedQueryable<T> query, int pageNumber, int itemsPerPage,
+            Func<IQueryable<T>, IEnumerable<T>> itemsEnumerator)
         {
             _ = query ?? throw new ArgumentNullException(nameof(query));
+            _ = itemsEnumerator ?? throw new ArgumentNullException(nameof(itemsEnumerator));
 
             if (pageNumber < 1)
             {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -49,10 +50,23 @@ namespace ToPage.Tests
         }
 
         [Fact]
+        public void Throws_On_Null_ItemsEnumerator()
+        {
+            // arrange
+            var query = GetBasicOrderedQuery();
+            int pageNumber = 1;
+            int itemsPerPage = 10;
+            Func<IQueryable<int>, IEnumerable<int>> itemsEnumerator = null;
+
+            // act, assert
+            Assert.Throws<ArgumentNullException>(() => _ = query.ToPage(pageNumber, itemsPerPage, itemsEnumerator));
+        }
+
+        [Fact]
         public void Throws_On_PageNumber_Under_1()
         {
             // arrange
-            IOrderedQueryable<int> query = GetBasicOrderedQuery();
+            var query = GetBasicOrderedQuery();
             int pageNumber = 0;
             int itemsPerPage = 10;
 
@@ -64,7 +78,7 @@ namespace ToPage.Tests
         public void Throws_On_ItemsPerPage_Under_1()
         {
             // arrange
-            IOrderedQueryable<int> query = GetBasicOrderedQuery();
+            var query = GetBasicOrderedQuery();
             int pageNumber = 1;
             int itemsPerPage = 0;
 
