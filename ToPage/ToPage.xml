@@ -46,6 +46,27 @@
             The items on this page.
             </summary>
         </member>
+        <member name="T:ToPage.IPageWithCounts">
+            <summary>
+            A page with an item count and a page count.
+            </summary>
+        </member>
+        <member name="P:ToPage.IPageWithCounts.ItemCount">
+            <summary>
+            Total number of items in the collection this page is from.
+            </summary>
+        </member>
+        <member name="P:ToPage.IPageWithCounts.PageCount">
+            <summary>
+            Total number of pages in the collection this page is from.
+            </summary>
+        </member>
+        <member name="T:ToPage.IPageWithCounts`1">
+            <summary>
+            A page with generic page items, an item count, and a page count.
+            </summary>
+            <typeparam name="T">Type of the items on the page.</typeparam>
+        </member>
         <member name="T:ToPage.Page`1">
             <summary>
             A page with generic page items.
@@ -64,6 +85,52 @@
             </summary>
             <param name="items">The items on the page.</param>
             <param name="pageNumber">The 1-based page number.</param>
+        </member>
+        <member name="T:ToPage.Page">
+            <summary>
+            Provides static methods relating to <see cref="T:ToPage.IPage"/> objects.
+            </summary>
+        </member>
+        <member name="M:ToPage.Page.Empty``1">
+            <summary>
+            Creates an empty <see cref="T:ToPage.Page`1"/>.
+            </summary>
+            <typeparam name="T">Type of the items on the page.</typeparam>
+            <returns>An empty <see cref="T:ToPage.Page`1"/>.</returns>
+        </member>
+        <member name="M:ToPage.Page.EmptyWithCounts``1">
+            <summary>
+            Creates an empty <see cref="T:ToPage.PageWithCounts`1"/>.
+            </summary>
+            <typeparam name="T">Type of the items on the page.</typeparam>
+            <returns>An empty <see cref="T:ToPage.PageWithCounts`1"/>.</returns>
+        </member>
+        <member name="T:ToPage.PageWithCounts`1">
+            <summary>
+            A page with generic page items, an item count, and a page count.
+            </summary>
+            <typeparam name="T">Type of the items on the page.</typeparam>
+        </member>
+        <member name="P:ToPage.PageWithCounts`1.Items">
+            <inheritdoc/>
+        </member>
+        <member name="P:ToPage.PageWithCounts`1.PageNumber">
+            <inheritdoc/>
+        </member>
+        <member name="P:ToPage.PageWithCounts`1.ItemCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:ToPage.PageWithCounts`1.PageCount">
+            <inheritdoc/>
+        </member>
+        <member name="M:ToPage.PageWithCounts`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:ToPage.PageWithCounts`1"/> with items, a page number, an item count, and a page count.
+            </summary>
+            <param name="items">The items on the page.</param>
+            <param name="pageNumber">The 1-based page number.</param>
+            <param name="itemCount">Total number of items in the collection this page is from.</param>
+            <param name="pageCount">Total number of pages in the collection this page is from.</param>
         </member>
         <member name="T:ToPage.QueryableExtensions">
             <summary>
