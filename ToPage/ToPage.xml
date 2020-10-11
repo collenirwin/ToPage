@@ -25,6 +25,25 @@
             </exception>
             <returns>The specified page from the enumerable.</returns>
         </member>
+        <member name="M:ToPage.EnumerableExtensions.ToPageWithCounts``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+            <summary>
+            Creates a <see cref="T:ToPage.PageWithCounts`1"/> from the enumerable.
+            </summary>
+            <typeparam name="T">The enumerable's item type.</typeparam>
+            <param name="values">Enumerable to build the page from.</param>
+            <param name="pageNumber">The 1-based page number to get.</param>
+            <param name="itemsPerPage">The number of items on the page.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when <paramref name="values"/> or  is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Thrown when <paramref name="pageNumber"/> or <paramref name="itemsPerPage"/> is less than 1.
+            </exception>
+            <exception cref="T:System.OverflowException">
+            Thrown when <paramref name="values"/> contains more than <see cref="F:System.Int32.MaxValue"/> items.
+            </exception>
+            <returns>The specified page from the enumerable.</returns>
+        </member>
         <member name="T:ToPage.IPage">
             <summary>
             The base interface for a page. Contains a page number.
@@ -167,6 +186,67 @@
             </exception>
             <exception cref="T:System.ArgumentOutOfRangeException">
             Thrown when <paramref name="pageNumber"/> or <paramref name="itemsPerPage"/> is less than 1.
+            </exception>
+            <returns>The specified page from the query.</returns>
+        </member>
+        <member name="M:ToPage.QueryableExtensions.ToPageWithCounts``1(System.Linq.IOrderedQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            Creates a <see cref="T:ToPage.PageWithCounts`1"/> from the query.
+            </summary>
+            <typeparam name="T">The query's item type.</typeparam>
+            <param name="query">Query to build the page from.</param>
+            <param name="pageNumber">The 1-based page number to get.</param>
+            <param name="itemsPerPage">The number of items on the page.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when <paramref name="query"/> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Thrown when <paramref name="pageNumber"/> or <paramref name="itemsPerPage"/> is less than 1.
+            </exception>
+            <exception cref="T:System.OverflowException">
+            Thrown when the <paramref name="query"/> returns more than <see cref="F:System.Int32.MaxValue"/> items.
+            </exception>
+            <returns>The specified page from the query.</returns>
+        </member>
+        <member name="M:ToPage.QueryableExtensions.ToPageWithCounts``1(System.Linq.IOrderedQueryable{``0},System.Int32,System.Int32,System.Func{System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0}})">
+            <summary>
+            Creates a <see cref="T:ToPage.PageWithCounts`1"/> from the query.
+            </summary>
+            <typeparam name="T">The query's item type.</typeparam>
+            <param name="query">Query to build the page from.</param>
+            <param name="pageNumber">The 1-based page number to get.</param>
+            <param name="itemsPerPage">The number of items on the page.</param>
+            <param name="itemsEnumerator">The function to use for enumerating the page items from the query.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when <paramref name="query"/> or <paramref name="itemsEnumerator"/> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Thrown when <paramref name="pageNumber"/> or <paramref name="itemsPerPage"/> is less than 1.
+            </exception>
+            <exception cref="T:System.OverflowException">
+            Thrown when the <paramref name="query"/> returns more than <see cref="F:System.Int32.MaxValue"/> items.
+            </exception>
+            <returns>The specified page from the query.</returns>
+        </member>
+        <member name="M:ToPage.QueryableExtensions.ToPageWithCounts``1(System.Linq.IOrderedQueryable{``0},System.Int32,System.Int32,System.Func{System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0}},System.Func{System.Linq.IQueryable{``0},System.Int32})">
+            <summary>
+            Creates a <see cref="T:ToPage.PageWithCounts`1"/> from the query.
+            </summary>
+            <typeparam name="T">The query's item type.</typeparam>
+            <param name="query">Query to build the page from.</param>
+            <param name="pageNumber">The 1-based page number to get.</param>
+            <param name="itemsPerPage">The number of items on the page.</param>
+            <param name="itemsEnumerator">The function to use for enumerating the page items from the query.</param>
+            <param name="itemsCounter">The function to use for counting the results of the query.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when <paramref name="query"/>, <paramref name="itemsEnumerator"/>,
+            or <paramref name="itemsCounter"/> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Thrown when <paramref name="pageNumber"/> or <paramref name="itemsPerPage"/> is less than 1.
+            </exception>
+            <exception cref="T:System.OverflowException">
+            Thrown when the <paramref name="query"/> returns more than <see cref="F:System.Int32.MaxValue"/> items.
             </exception>
             <returns>The specified page from the query.</returns>
         </member>
