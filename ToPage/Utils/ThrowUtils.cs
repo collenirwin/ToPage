@@ -16,6 +16,14 @@ namespace ToPage.Utils
             AssertValidItemsPerPage(itemsPerPage);
         }
 
+        public static void AssertValidToPageArgs<T>(IEnumerable<T> values, int pageNumber, int itemsPerPage)
+        {
+            _ = values ?? throw new ArgumentNullException(nameof(values));
+
+            AssertValidPageNumber(pageNumber);
+            AssertValidItemsPerPage(itemsPerPage);
+        }
+
         public static void AssertValidPageNumber(int pageNumber)
         {
             if (pageNumber < 1)
