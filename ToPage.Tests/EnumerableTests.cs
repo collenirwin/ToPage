@@ -121,6 +121,43 @@ namespace ToPage.Tests
             Assert.Empty(emptyPage.Items);
         }
 
-        private IEnumerable<int> GetBasicEnumerable() => Enumerable.Range(1, 100);
+        [Theory]
+        [InlineData(100)]
+        [InlineData(101)]
+        [InlineData(0)]
+        [InlineData(10_000)]
+        public void Has_Correct_ItemCount(int itemCount)
+        {
+            // arrange
+            var values = GetBasicEnumerable(itemCount);
+            int pageNumber = 1;
+            int itemsPerPage = 10;
+
+            // act
+            var page = values.ToPageWithCounts(pageNumber, itemsPerPage);
+
+            // assert
+            Assert.Equal(itemCount, page.ItemCount);
+        }
+
+        [Theory]
+        [InlineData(100, 10, 10)]
+        [InlineData(101, 10, 11)]
+        [InlineData(0, 10, 0)]
+        [InlineData(10_000, 7, 1429)]
+        public void Has_Correct_PageCount(int itemCount, int itemsPerPage, int pageCount)
+        {
+            // arrange
+            var values = GetBasicEnumerable(itemCount);
+            int pageNumber = 1;
+
+            // act
+            var page = values.ToPageWithCounts(pageNumber, itemsPerPage);
+
+            // assert
+            Assert.Equal(pageCount, page.PageCount);
+        }
+
+        private IEnumerable<int> GetBasicEnumerable(int length = 100) => Enumerable.Range(1, length);
     }
 }
