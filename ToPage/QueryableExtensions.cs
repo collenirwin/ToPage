@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using ToPage.Utils;
 
 namespace ToPage
@@ -48,6 +49,37 @@ namespace ToPage
             ThrowUtils.AssertValidToPageArgs(query, pageNumber, itemsPerPage, itemsEnumerator);
 
             var items = itemsEnumerator(query
+                .Skip((pageNumber - 1) * itemsPerPage)
+                .Take(itemsPerPage));
+
+            return new Page<T>(items, pageNumber);
+        }
+
+        /// <summary>
+        /// Creates a <see cref="Page{T}"/> from the query.
+        /// </summary>
+        /// <typeparam name="T">The query's item type.</typeparam>
+        /// <param name="query">Query to build the page from.</param>
+        /// <param name="pageNumber">The 1-based page number to get.</param>
+        /// <param name="itemsPerPage">The number of items on the page.</param>
+        /// <param name="itemsEnumerator">
+        /// The asynchronous function to use for enumerating the page items from the query.
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown when <paramref name="query"/> or <paramref name="itemsEnumerator"/> is <c>null</c>.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown when <paramref name="pageNumber"/> or <paramref name="itemsPerPage"/> is less than 1.
+        /// </exception>
+        /// <returns>The specified page from the query.</returns>
+        public static async Task<Page<T>> ToPageAsync<T>(this IOrderedQueryable<T> query,
+            int pageNumber, int itemsPerPage,
+            Func<IQueryable<T>, Task<IEnumerable<T>>> itemsEnumerator)
+        {
+            ThrowUtils.AssertValidToPageArgs(query, pageNumber, itemsPerPage);
+            itemsEnumerator = itemsEnumerator ?? throw new ArgumentNullException(nameof(itemsEnumerator));
+
+            var items = await itemsEnumerator(query
                 .Skip((pageNumber - 1) * itemsPerPage)
                 .Take(itemsPerPage));
 

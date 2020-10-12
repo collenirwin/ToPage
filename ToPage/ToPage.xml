@@ -189,6 +189,25 @@
             </exception>
             <returns>The specified page from the query.</returns>
         </member>
+        <member name="M:ToPage.QueryableExtensions.ToPageAsync``1(System.Linq.IOrderedQueryable{``0},System.Int32,System.Int32,System.Func{System.Linq.IQueryable{``0},System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{``0}}})">
+            <summary>
+            Creates a <see cref="T:ToPage.Page`1"/> from the query.
+            </summary>
+            <typeparam name="T">The query's item type.</typeparam>
+            <param name="query">Query to build the page from.</param>
+            <param name="pageNumber">The 1-based page number to get.</param>
+            <param name="itemsPerPage">The number of items on the page.</param>
+            <param name="itemsEnumerator">
+            The asynchronous function to use for enumerating the page items from the query.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when <paramref name="query"/> or <paramref name="itemsEnumerator"/> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Thrown when <paramref name="pageNumber"/> or <paramref name="itemsPerPage"/> is less than 1.
+            </exception>
+            <returns>The specified page from the query.</returns>
+        </member>
         <member name="M:ToPage.QueryableExtensions.ToPageWithCounts``1(System.Linq.IOrderedQueryable{``0},System.Int32,System.Int32)">
             <summary>
             Creates a <see cref="T:ToPage.PageWithCounts`1"/> from the query.
