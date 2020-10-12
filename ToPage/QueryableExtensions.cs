@@ -164,5 +164,44 @@ namespace ToPage
 
             return new PageWithCounts<T>(page.Items, page.PageNumber, itemCount, pageCount);
         }
+
+        /// <summary>
+        /// Creates a <see cref="PageWithCounts{T}"/> from the query.
+        /// </summary>
+        /// <typeparam name="T">The query's item type.</typeparam>
+        /// <param name="query">Query to build the page from.</param>
+        /// <param name="pageNumber">The 1-based page number to get.</param>
+        /// <param name="itemsPerPage">The number of items on the page.</param>
+        /// <param name="itemsEnumerator">
+        /// The asynchronous function to use for enumerating the page items from the query.
+        /// </param>
+        /// <param name="itemsCounter">
+        /// The asynchronous function to use for counting the results of the query.
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown when <paramref name="query"/>, <paramref name="itemsEnumerator"/>,
+        /// or <paramref name="itemsCounter"/> is <c>null</c>.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown when <paramref name="pageNumber"/> or <paramref name="itemsPerPage"/> is less than 1.
+        /// </exception>
+        /// <exception cref="OverflowException">
+        /// Thrown when the <paramref name="query"/> returns more than <see cref="int.MaxValue"/> items.
+        /// </exception>
+        /// <returns>The specified page from the query.</returns>
+        public static async Task<PageWithCounts<T>> ToPageWithCountsAsync<T>(this IOrderedQueryable<T> query,
+            int pageNumber, int itemsPerPage,
+            Func<IQueryable<T>, Task<IEnumerable<T>>> itemsEnumerator,
+            Func<IQueryable<T>, Task<int>> itemsCounter)
+        {
+            itemsCounter = itemsCounter ?? throw new ArgumentNullException(nameof(itemsCounter));
+
+            var page = await ToPageAsync(query, pageNumber, itemsPerPage, itemsEnumerator);
+
+            int itemCount = await itemsCounter(query);
+            int pageCount = (int)Math.Ceiling((double)itemCount / itemsPerPage);
+
+            return new PageWithCounts<T>(page.Items, page.PageNumber, itemCount, pageCount);
+        }
     }
 }
