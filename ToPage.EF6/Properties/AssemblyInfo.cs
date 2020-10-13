@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ToPage.EF6")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("ToPage extensions for Entity Framework 6")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Clinton County Government")]
+[assembly: AssemblyCompany("Collen Irwin")]
 [assembly: AssemblyProduct("ToPage.EF6")]
-[assembly: AssemblyCopyright("Copyright © Clinton County Government 2020")]
+[assembly: AssemblyCopyright("Copyright © Collen Irwin 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

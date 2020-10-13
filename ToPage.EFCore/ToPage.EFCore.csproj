@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>Collen Irwin</Authors>
+    <Company>Collen Irwin</Company>
+    <Product>ToPage.EFCore</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>ToPage extensions for EF Core</Description>
+    <PackageProjectUrl>https://github.com/collenirwin/ToPage</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/collenirwin/ToPage.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>paging entityframeworkcore efcore</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
