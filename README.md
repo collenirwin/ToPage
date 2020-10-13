@@ -39,3 +39,12 @@ It has the same properties as a `Page<int>`,
 as well as an `ItemCount` and a `PageCount` which are calculated based on the size of the collection and the number of items per page requested.
 
 *Note:* Both `Page<int>` and `PageWithCounts<int>` implement `IPage` and `IPage<int>` interfaces.
+
+#### Entity Framework async example
+```csharp
+// Get the 5th page of 20 users ordered alphabetically by Name
+var page = await context.Users
+    .OrderBy(user => user.Name)
+    .ToPageAsync(pageNumber: 5, itemsPerPage: 20);
+```
+*Note:* This example uses either the `ToPage.EFCore` or `ToPage.EF6` library (both APIs are the same, choose the one for the EF version you're using).
