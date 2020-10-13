@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Collen Irwin</Authors>
+    <Copyright>Copyright Collen Irwin 2020</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/collenirwin/ToPage.git</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/collenirwin/ToPage</PackageProjectUrl>
+    <Description>A tiny paging library for .NET with support for EF Core and EF6</Description>
+    <PackageTags>paging entityframework entityframeworkcore</PackageTags>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
