@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using ToPage.Tests.Data;
 
 namespace ToPage.Tests
@@ -18,6 +19,15 @@ namespace ToPage.Tests
             _context = new AppDbContext(new DbContextOptionsBuilder<AppDbContext>()
                .UseSqlite(_connection)
                .Options);
+
+            Seed();
+        }
+
+        private void Seed()
+        {
+            _context.Database.EnsureCreated();
+            _context.People.AddRange(Enumerable.Range(1, 100).Select(x => new Person { Name = x.ToString() }));
+            _context.SaveChanges();
         }
 
         public void Dispose()
