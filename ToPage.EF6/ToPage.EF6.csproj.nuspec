@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>ToPage.EF6</id>
+    <version>1.0.0</version>
+    <authors>Collen Irwin</authors>
+    <owners>Collen Irwin</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/collenirwin/ToPage</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ToPage extensions for Entity Framework 6</description>
+    <copyright>Copyright Collen Irwin 2020</copyright>
+    <tags>paging entityframework ef6</tags>
+    <dependencies>
+      <dependency id="EntityFramework" version="6.0" />
+    </dependencies>
+  </metadata>
+</package>
