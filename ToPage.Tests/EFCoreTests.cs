@@ -108,8 +108,46 @@ namespace ToPage.Tests
             Assert.Empty(page.Items);
         }
 
-        private IOrderedQueryable<Person> GetAllPeopleOrderedByNameQuery()
+        [Theory]
+        [InlineData(100)]
+        [InlineData(99)]
+        [InlineData(0)]
+        [InlineData(1)]
+        public async Task Has_Correct_ItemCount(int itemCount)
+        {
+            // arrange
+            var query = GetAllPeopleOrderedByNameQuery(itemCount);
+            int pageNumber = 1;
+            int itemsPerPage = 10;
+
+            // act
+            var page = await query.ToPageWithCountsAsync(pageNumber, itemsPerPage);
+
+            // assert
+            Assert.Equal(itemCount, page.ItemCount);
+        }
+
+        [Theory]
+        [InlineData(100, 10, 10)]
+        [InlineData(92, 10, 10)]
+        [InlineData(0, 10, 0)]
+        [InlineData(1, 10, 1)]
+        public async Task Has_Correct_PageCount(int itemCount, int itemsPerPage, int pageCount)
+        {
+            // arrange
+            var query = GetAllPeopleOrderedByNameQuery(itemCount);
+            int pageNumber = 1;
+
+            // act
+            var page = await query.ToPageWithCountsAsync(pageNumber, itemsPerPage);
+
+            // assert
+            Assert.Equal(pageCount, page.PageCount);
+        }
+
+        private IOrderedQueryable<Person> GetAllPeopleOrderedByNameQuery(int length = 100)
             => _context.People
+                .Take(length)
                 .OrderBy(person => person.Name);
     }
 }
