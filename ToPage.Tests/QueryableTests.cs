@@ -171,6 +171,25 @@ namespace ToPage.Tests
             Assert.Equal(pageCount, page.PageCount);
         }
 
+        [Fact]
+        public void Custom_Enumerator_And_Counter()
+        {
+            // arrange
+            var query = GetBasicOrderedQuery();
+            int pageNumber = 1;
+            int itemsPerPage = 10;
+
+            // act
+            var page = query.ToPageWithCounts(pageNumber, itemsPerPage,
+                itemsEnumerator: items => new List<int>(),
+                itemsCounter: items => 1);
+
+            // assert
+            Assert.Equal(1, page.ItemCount);
+            Assert.Equal(1, page.PageCount);
+            Assert.Empty(page.Items);
+        }
+
         private IOrderedQueryable<int> GetBasicOrderedQuery(int length = 100)
             => Enumerable.Range(1, length)
                 .AsQueryable()
