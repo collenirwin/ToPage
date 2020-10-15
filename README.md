@@ -13,6 +13,10 @@ Package | Description
 [ToPage.EF6](https://www.nuget.org/packages/ToPage.EF6) | Provides `async` overloads using EF6's `ToListAsync` and `CountAsync` methods
 
 ## Examples
+#### Example projects
+ - [Basic](./Basic)
+ - [Entity Framework](./EntityFramework)
+
 #### Basic `IEnumerable` example
 ```csharp
 var numbers = Enumerable.Range(1, 10);
