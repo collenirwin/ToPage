@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToPage.Tests", "ToPage.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToPage.EF6", "ToPage.EF6\ToPage.EF6.csproj", "{9CDE7D95-091D-4654-9422-95F29232CD28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToPage.EFCore", "ToPage.EFCore\ToPage.EFCore.csproj", "{17FCCE49-C5CE-4E00-9BBC-85D331B21C97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToPage.EFCore", "ToPage.EFCore\ToPage.EFCore.csproj", "{17FCCE49-C5CE-4E00-9BBC-85D331B21C97}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{28D35590-ED1C-4649-A560-2FCFD50567C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basic", "Basic\Basic.csproj", "{492A2BE3-C937-4804-8B5D-A851B94633C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +37,16 @@ Global
 		{17FCCE49-C5CE-4E00-9BBC-85D331B21C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17FCCE49-C5CE-4E00-9BBC-85D331B21C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17FCCE49-C5CE-4E00-9BBC-85D331B21C97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{492A2BE3-C937-4804-8B5D-A851B94633C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{492A2BE3-C937-4804-8B5D-A851B94633C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{492A2BE3-C937-4804-8B5D-A851B94633C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{492A2BE3-C937-4804-8B5D-A851B94633C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{492A2BE3-C937-4804-8B5D-A851B94633C2} = {28D35590-ED1C-4649-A560-2FCFD50567C4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A69D12FA-8CAB-45D8-895C-48973A0A2ADA}
