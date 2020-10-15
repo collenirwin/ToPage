@@ -1,5 +1,5 @@
 # ToPage
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/collenirwin/ToPage/.NET%20Core)
+![.NET Core](https://github.com/collenirwin/ToPage/workflows/.NET%20Core/badge.svg)
 
 A tiny paging library for .NET.
 
