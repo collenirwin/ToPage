@@ -15,6 +15,7 @@ Package | Description
 ## Examples
 #### Example projects
  - [Basic](./Basic)
+ - [Entity Framework](./EntityFramework)
 
 #### Basic `IEnumerable` example
 ```csharp
