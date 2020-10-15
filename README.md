@@ -1,5 +1,7 @@
 # ToPage
-A small paging library for .NET.
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/collenirwin/ToPage/.NET%20Core)
+
+A tiny paging library for .NET.
 
 This library contains extension methods for `IEnumerable<T>` and `IOrderedQueryable<T>` types that make it easy to fetch a page of data from them.
 
