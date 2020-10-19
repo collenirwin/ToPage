@@ -7,7 +7,7 @@ using Xunit;
 
 namespace ToPage.Tests
 {
-    public class EFCoreTests : AppDbContextTestBase
+    public class EFCoreAsyncTests : AppDbContextTestBase
     {
         [Fact]
         public async Task Has_Correct_PageNumber()
