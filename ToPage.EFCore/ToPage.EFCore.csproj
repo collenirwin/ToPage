@@ -11,10 +11,7 @@
     <RepositoryUrl>https://github.com/collenirwin/ToPage.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>paging entityframeworkcore efcore</PackageTags>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Git\ToPage\ToPage.EFCore\ToPage.EFCore.xml</DocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
