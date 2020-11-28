@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ToPage
 {
@@ -13,6 +14,12 @@ namespace ToPage
 
         /// <inheritdoc/>
         public int PageNumber { get; }
+
+        /// <inheritdoc/>
+        public int NextPageNumber => PageNumber + 1;
+
+        /// <inheritdoc/>
+        public int PreviousPageNumber => Math.Max(1, PageNumber - 1);
 
         /// <summary>
         /// Initializes a <see cref="Page{T}"/> with items and a page number.
