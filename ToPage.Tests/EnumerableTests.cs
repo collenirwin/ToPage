@@ -192,6 +192,21 @@ namespace ToPage.Tests
             Assert.Equal(pageCount, page.PageCount);
         }
 
+        [Fact]
+        public void Has_Correct_NextPageNumber_With_Counts()
+        {
+            // arrange
+            var values = GetBasicEnumerable();
+            int pageNumber = 10;
+            int itemsPerPage = 10;
+
+            // act
+            var page = values.ToPageWithCounts(pageNumber, itemsPerPage);
+
+            // assert
+            Assert.Equal(page.PageNumber, page.NextPageNumber);
+        }
+
         private IEnumerable<int> GetBasicEnumerable(int length = 100) => Enumerable.Range(1, length);
     }
 }
