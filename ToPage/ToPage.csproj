@@ -11,7 +11,7 @@
     <PackageTags>paging entityframework entityframeworkcore</PackageTags>
     <RepositoryType>git</RepositoryType>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
   </PropertyGroup>
 
 </Project>

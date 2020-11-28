@@ -12,6 +12,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>paging entityframeworkcore efcore</PackageTags>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
