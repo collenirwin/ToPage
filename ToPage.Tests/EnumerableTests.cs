@@ -22,6 +22,40 @@ namespace ToPage.Tests
             Assert.Equal(pageNumber, page.PageNumber);
         }
 
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(2, 3)]
+        [InlineData(10, 11)]
+        public void Has_Correct_NextPageNumber(int pageNumber, int expected)
+        {
+            // arrange
+            var values = GetBasicEnumerable();
+            int itemsPerPage = 10;
+
+            // act
+            var page = values.ToPage(pageNumber, itemsPerPage);
+
+            // assert
+            Assert.Equal(expected, page.NextPageNumber);
+        }
+
+        [Theory]
+        [InlineData(1, 1)]
+        [InlineData(2, 1)]
+        [InlineData(11, 10)]
+        public void Has_Correct_PreviousPageNumber(int pageNumber, int expected)
+        {
+            // arrange
+            var values = GetBasicEnumerable();
+            int itemsPerPage = 10;
+
+            // act
+            var page = values.ToPage(pageNumber, itemsPerPage);
+
+            // assert
+            Assert.Equal(expected, page.PreviousPageNumber);
+        }
+
         [Fact]
         public void Has_Correct_Has_Correct_Number_Of_Items()
         {
@@ -156,6 +190,21 @@ namespace ToPage.Tests
 
             // assert
             Assert.Equal(pageCount, page.PageCount);
+        }
+
+        [Fact]
+        public void Has_Correct_NextPageNumber_With_Counts()
+        {
+            // arrange
+            var values = GetBasicEnumerable();
+            int pageNumber = 10;
+            int itemsPerPage = 10;
+
+            // act
+            var page = values.ToPageWithCounts(pageNumber, itemsPerPage);
+
+            // assert
+            Assert.Equal(page.PageNumber, page.NextPageNumber);
         }
 
         private IEnumerable<int> GetBasicEnumerable(int length = 100) => Enumerable.Range(1, length);
