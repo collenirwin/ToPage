@@ -11,6 +11,16 @@ namespace ToPage
         /// The 1-based page number for this page.
         /// </summary>
         int PageNumber { get; }
+
+        /// <summary>
+        /// The page number after <see cref="PageNumber"/>.
+        /// </summary>
+        int NextPageNumber { get; }
+
+        /// <summary>
+        /// The page number before <see cref="PageNumber"/>.
+        /// </summary>
+        int PreviousPageNumber { get; }
     }
 
     /// <summary>
