@@ -37,7 +37,7 @@ namespace Basic
             var page = people.ToPage(pageNumber, itemsPerPage);
 
             Console.WriteLine($"Name\tAge\tFavorite Color (Page {page.PageNumber})");
-            foreach (var person in page.Items)
+            foreach (var person in page)
             {
                 Console.WriteLine($"{person.Name}\t{person.Age}\t{person.FavoriteColor}");
             }

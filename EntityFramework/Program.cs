@@ -36,7 +36,7 @@ namespace EntityFramework
             Console.Clear();
             Console.WriteLine($"Id\tAge\tFavorite Color");
 
-            foreach (var person in page.Items)
+            foreach (var person in page)
             {
                 Console.WriteLine($"{person.Id}\t{person.Age}\t{person.FavoriteColor}");
             }
