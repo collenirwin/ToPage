@@ -16,7 +16,7 @@ namespace ToPage
         public int PageNumber { get; }
 
         /// <inheritdoc/>
-        public int NextPageNumber => PageNumber + 1;
+        public virtual int NextPageNumber => PageNumber + 1;
 
         /// <inheritdoc/>
         public int PreviousPageNumber => Math.Max(1, PageNumber - 1);
