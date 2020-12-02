@@ -22,7 +22,7 @@ Package | Target | Description
 var numbers = Enumerable.Range(1, 10);
 var page = numbers.ToPage(pageNumber: 1, itemsPerPage: 3);
 
-Console.WriteLine(string.Join(", ", page.Items));
+Console.WriteLine(string.Join(", ", page));
 // Output:
 // 1, 2, 3
 ```
@@ -35,7 +35,7 @@ var numbers = Enumerable.Range(1, 10);
 var page = numbers.ToPageWithCounts(pageNumber: 1, itemsPerPage: 3);
 
 Console.WriteLine($"Total items: {page.ItemCount}, total pages: {page.PageCount}");
-Console.WriteLine(string.Join(", ", page.Items));
+Console.WriteLine(string.Join(", ", page));
 // Output:
 // Total items: 10, total pages: 4
 // 1, 2, 3
