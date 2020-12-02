@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace ToPage
@@ -31,5 +32,11 @@ namespace ToPage
             Items = items;
             PageNumber = pageNumber;
         }
+
+        /// <inheritdoc/>
+        public IEnumerator<T> GetEnumerator() => Items.GetEnumerator();
+
+        /// <inheritdoc/>
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

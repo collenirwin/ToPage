@@ -27,7 +27,7 @@ namespace ToPage
     /// A page with generic page items.
     /// </summary>
     /// <typeparam name="T">Type of the items on the page.</typeparam>
-    public interface IPage<T> : IPage
+    public interface IPage<T> : IPage, IEnumerable<T>
     {
         /// <summary>
         /// The items on this page.
