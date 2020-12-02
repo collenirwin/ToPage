@@ -155,6 +155,39 @@ namespace ToPage.Tests
             Assert.Empty(emptyPage.Items);
         }
 
+        [Fact]
+        public void All_Pages_Have_Correct_Items_Implicit()
+        {
+            // arrange
+            var values = GetBasicEnumerable();
+            int itemsPerPage = 1;
+
+            // act, assert
+            for (int x = 1; x <= 100; x++)
+            {
+                var page = values.ToPage(pageNumber: x, itemsPerPage);
+                Assert.Single(page, x);
+            }
+
+            var emptyPage = values.ToPage(pageNumber: 101, itemsPerPage);
+            Assert.Empty(emptyPage);
+        }
+
+        [Fact]
+        public void Page_Enumerable_Is_Just_Page_Items()
+        {
+            // arrange
+            var values = GetBasicEnumerable();
+            int pageNumber = 1;
+            int itemsPerPage = 10;
+
+            // act
+            var page = values.ToPage(pageNumber, itemsPerPage);
+
+            // assert
+            Assert.Equal(page.Items, page);
+        }
+
         [Theory]
         [InlineData(100)]
         [InlineData(101)]
