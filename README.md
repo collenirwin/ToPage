@@ -26,7 +26,7 @@ Console.WriteLine(string.Join(", ", page));
 // Output:
 // 1, 2, 3
 ```
-In this example, a `Page<int>` object is returned from `ToPage`.
+In this example, an `IPage<int>` object is returned from `ToPage`.
 Its only properties are the requested `PageNumber` (1), and the `Items` on the page.
 
 #### Basic `IEnumerable` example with counts
@@ -40,11 +40,9 @@ Console.WriteLine(string.Join(", ", page));
 // Total items: 10, total pages: 4
 // 1, 2, 3
 ```
-In this example, a `PageWithCounts<int>` object is returned from `ToPage`.
-It has the same properties as a `Page<int>`,
+In this example, an `IPageWithCounts<int>` object is returned from `ToPage`.
+It has the same properties as an `IPage<int>`,
 as well as an `ItemCount` and a `PageCount` which are calculated based on the size of the collection and the number of items per page requested.
-
-*Note:* Both `Page<int>` and `PageWithCounts<int>` implement `IPage` and `IPage<int>` interfaces.
 
 #### Entity Framework async example
 ```csharp

@@ -11,7 +11,7 @@ namespace ToPage
     public static class EnumerableExtensions
     {
         /// <summary>
-        /// Creates a <see cref="Page{T}"/> from the enumerable.
+        /// Creates an <see cref="IPage{T}"/> from the enumerable.
         /// </summary>
         /// <typeparam name="T">The enumerable's item type.</typeparam>
         /// <param name="values">Enumerable to build the page from.</param>
@@ -24,7 +24,7 @@ namespace ToPage
         /// Thrown when <paramref name="pageNumber"/> or <paramref name="itemsPerPage"/> is less than 1.
         /// </exception>
         /// <returns>The specified page from the enumerable.</returns>
-        public static Page<T> ToPage<T>(this IEnumerable<T> values, int pageNumber, int itemsPerPage)
+        public static IPage<T> ToPage<T>(this IEnumerable<T> values, int pageNumber, int itemsPerPage)
         {
             ThrowUtils.AssertValidToPageArgs(values, pageNumber, itemsPerPage);
 
@@ -36,7 +36,7 @@ namespace ToPage
         }
 
         /// <summary>
-        /// Creates a <see cref="PageWithCounts{T}"/> from the enumerable.
+        /// Creates an <see cref="IPageWithCounts{T}"/> from the enumerable.
         /// </summary>
         /// <typeparam name="T">The enumerable's item type.</typeparam>
         /// <param name="values">Enumerable to build the page from.</param>
@@ -52,7 +52,7 @@ namespace ToPage
         /// Thrown when <paramref name="values"/> contains more than <see cref="int.MaxValue"/> items.
         /// </exception>
         /// <returns>The specified page from the enumerable.</returns>
-        public static PageWithCounts<T> ToPageWithCounts<T>(this IEnumerable<T> values,
+        public static IPageWithCounts<T> ToPageWithCounts<T>(this IEnumerable<T> values,
             int pageNumber, int itemsPerPage)
         {
             var page = ToPage(values, pageNumber, itemsPerPage);

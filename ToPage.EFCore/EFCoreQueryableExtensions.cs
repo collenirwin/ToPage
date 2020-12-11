@@ -11,7 +11,7 @@ namespace ToPage.EFCore
     public static class EFCoreQueryableExtensions
     {
         /// <summary>
-        /// Creates a <see cref="Page{T}"/> from the query.
+        /// Creates an <see cref="IPage{T}"/> from the query.
         /// </summary>
         /// <typeparam name="T">The query's item type.</typeparam>
         /// <param name="query">Query to build the page from.</param>
@@ -24,13 +24,13 @@ namespace ToPage.EFCore
         /// Thrown when <paramref name="pageNumber"/> or <paramref name="itemsPerPage"/> is less than 1.
         /// </exception>
         /// <returns>The specified page from the query.</returns>
-        public static async Task<Page<T>> ToPageAsync<T>(this IOrderedQueryable<T> query,
+        public static async Task<IPage<T>> ToPageAsync<T>(this IOrderedQueryable<T> query,
             int pageNumber, int itemsPerPage)
             => await QueryableExtensions
                 .ToPageAsync(query, pageNumber, itemsPerPage, async items => await items.ToListAsync());
 
         /// <summary>
-        /// Creates a <see cref="PageWithCounts{T}"/> from the query.
+        /// Creates an <see cref="IPageWithCounts{T}"/> from the query.
         /// </summary>
         /// <typeparam name="T">The query's item type.</typeparam>
         /// <param name="query">Query to build the page from.</param>
@@ -43,7 +43,7 @@ namespace ToPage.EFCore
         /// Thrown when <paramref name="pageNumber"/> or <paramref name="itemsPerPage"/> is less than 1.
         /// </exception>
         /// <returns>The specified page from the query.</returns>
-        public static async Task<PageWithCounts<T>> ToPageWithCountsAsync<T>(this IOrderedQueryable<T> query,
+        public static async Task<IPageWithCounts<T>> ToPageWithCountsAsync<T>(this IOrderedQueryable<T> query,
             int pageNumber, int itemsPerPage)
             => await QueryableExtensions
                 .ToPageWithCountsAsync(query, pageNumber, itemsPerPage,
