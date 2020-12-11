@@ -12,7 +12,7 @@ namespace ToPage.Tests
         [Theory]
         [InlineData(0)]
         [InlineData(-1)]
-        public void Throws_For_PageCount_Under_1(int pageCount)
-            => Assert.Throws<ArgumentOutOfRangeException>(() => new Page<int>(Enumerable.Empty<int>(), pageCount));
+        public void Throws_For_PageNumber_Under_1(int pageNumber)
+            => Assert.Throws<ArgumentOutOfRangeException>(() => new Page<int>(Enumerable.Empty<int>(), pageNumber));
     }
 }
