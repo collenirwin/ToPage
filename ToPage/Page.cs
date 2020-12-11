@@ -27,9 +27,21 @@ namespace ToPage
         /// </summary>
         /// <param name="items">The items on the page.</param>
         /// <param name="pageNumber">The 1-based page number.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown when <paramref name="items"/> is null.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown when <paramref name="pageNumber"/> is less than 1.
+        /// </exception>
         public Page(IEnumerable<T> items, int pageNumber)
         {
-            Items = items;
+            Items = items ?? throw new ArgumentNullException(nameof(items));
+
+            if (pageNumber < 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(pageNumber), "Page number must be greater than 0.");
+            }
+
             PageNumber = pageNumber;
         }
 

@@ -25,9 +25,27 @@ namespace ToPage
         /// <param name="pageNumber">The 1-based page number.</param>
         /// <param name="itemCount">Total number of items in the collection this page is from.</param>
         /// <param name="pageCount">Total number of pages in the collection this page is from.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown when <paramref name="items"/> is null.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown when <paramref name="pageNumber"/> is less than 1,
+        /// when <paramref name="itemCount"/> is less than 0,
+        /// or when <paramref name="pageCount"/> is less than 0.
+        /// </exception>
         public PageWithCounts(IEnumerable<T> items, int pageNumber, int itemCount, int pageCount)
             : base(items, pageNumber)
         {
+            if (itemCount < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(itemCount), "Item count must be at least 0.");
+            }
+
+            if (pageCount < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(pageCount), "Page count must be at least 0.");
+            }
+
             ItemCount = itemCount;
             PageCount = pageCount;
         }
