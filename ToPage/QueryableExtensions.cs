@@ -12,7 +12,7 @@ namespace ToPage
     public static class QueryableExtensions
     {
         /// <summary>
-        /// Creates a <see cref="Page{T}"/> from the query.
+        /// Creates an <see cref="IPage{T}"/> from the query.
         /// </summary>
         /// <typeparam name="T">The query's item type.</typeparam>
         /// <param name="query">Query to build the page from.</param>
@@ -25,11 +25,11 @@ namespace ToPage
         /// Thrown when <paramref name="pageNumber"/> or <paramref name="itemsPerPage"/> is less than 1.
         /// </exception>
         /// <returns>The specified page from the query.</returns>
-        public static Page<T> ToPage<T>(this IOrderedQueryable<T> query, int pageNumber, int itemsPerPage)
+        public static IPage<T> ToPage<T>(this IOrderedQueryable<T> query, int pageNumber, int itemsPerPage)
             => ToPage(query, pageNumber, itemsPerPage, Enumerable.ToList);
 
         /// <summary>
-        /// Creates a <see cref="Page{T}"/> from the query.
+        /// Creates an <see cref="IPage{T}"/> from the query.
         /// </summary>
         /// <typeparam name="T">The query's item type.</typeparam>
         /// <param name="query">Query to build the page from.</param>
@@ -43,7 +43,7 @@ namespace ToPage
         /// Thrown when <paramref name="pageNumber"/> or <paramref name="itemsPerPage"/> is less than 1.
         /// </exception>
         /// <returns>The specified page from the query.</returns>
-        public static Page<T> ToPage<T>(this IOrderedQueryable<T> query, int pageNumber, int itemsPerPage,
+        public static IPage<T> ToPage<T>(this IOrderedQueryable<T> query, int pageNumber, int itemsPerPage,
             Func<IQueryable<T>, IEnumerable<T>> itemsEnumerator)
         {
             ThrowUtils.AssertValidToPageArgs(query, pageNumber, itemsPerPage, itemsEnumerator);
@@ -56,7 +56,7 @@ namespace ToPage
         }
 
         /// <summary>
-        /// Creates a <see cref="Page{T}"/> from the query.
+        /// Creates an <see cref="IPage{T}"/> from the query.
         /// </summary>
         /// <typeparam name="T">The query's item type.</typeparam>
         /// <param name="query">Query to build the page from.</param>
@@ -72,7 +72,7 @@ namespace ToPage
         /// Thrown when <paramref name="pageNumber"/> or <paramref name="itemsPerPage"/> is less than 1.
         /// </exception>
         /// <returns>The specified page from the query.</returns>
-        public static async Task<Page<T>> ToPageAsync<T>(this IOrderedQueryable<T> query,
+        public static async Task<IPage<T>> ToPageAsync<T>(this IOrderedQueryable<T> query,
             int pageNumber, int itemsPerPage,
             Func<IQueryable<T>, Task<IEnumerable<T>>> itemsEnumerator)
         {
@@ -87,7 +87,7 @@ namespace ToPage
         }
 
         /// <summary>
-        /// Creates a <see cref="PageWithCounts{T}"/> from the query.
+        /// Creates an <see cref="IPageWithCounts{T}"/> from the query.
         /// </summary>
         /// <typeparam name="T">The query's item type.</typeparam>
         /// <param name="query">Query to build the page from.</param>
@@ -103,12 +103,12 @@ namespace ToPage
         /// Thrown when the <paramref name="query"/> returns more than <see cref="int.MaxValue"/> items.
         /// </exception>
         /// <returns>The specified page from the query.</returns>
-        public static PageWithCounts<T> ToPageWithCounts<T>(this IOrderedQueryable<T> query,
+        public static IPageWithCounts<T> ToPageWithCounts<T>(this IOrderedQueryable<T> query,
             int pageNumber, int itemsPerPage)
             => ToPageWithCounts(query, pageNumber, itemsPerPage, Enumerable.ToList, Queryable.Count);
 
         /// <summary>
-        /// Creates a <see cref="PageWithCounts{T}"/> from the query.
+        /// Creates an <see cref="IPageWithCounts{T}"/> from the query.
         /// </summary>
         /// <typeparam name="T">The query's item type.</typeparam>
         /// <param name="query">Query to build the page from.</param>
@@ -125,13 +125,13 @@ namespace ToPage
         /// Thrown when the <paramref name="query"/> returns more than <see cref="int.MaxValue"/> items.
         /// </exception>
         /// <returns>The specified page from the query.</returns>
-        public static PageWithCounts<T> ToPageWithCounts<T>(this IOrderedQueryable<T> query,
+        public static IPageWithCounts<T> ToPageWithCounts<T>(this IOrderedQueryable<T> query,
             int pageNumber, int itemsPerPage,
             Func<IQueryable<T>, IEnumerable<T>> itemsEnumerator)
             => ToPageWithCounts(query, pageNumber, itemsPerPage, itemsEnumerator, Queryable.Count);
 
         /// <summary>
-        /// Creates a <see cref="PageWithCounts{T}"/> from the query.
+        /// Creates an <see cref="IPageWithCounts{T}"/> from the query.
         /// </summary>
         /// <typeparam name="T">The query's item type.</typeparam>
         /// <param name="query">Query to build the page from.</param>
@@ -150,7 +150,7 @@ namespace ToPage
         /// Thrown when the <paramref name="query"/> returns more than <see cref="int.MaxValue"/> items.
         /// </exception>
         /// <returns>The specified page from the query.</returns>
-        public static PageWithCounts<T> ToPageWithCounts<T>(this IOrderedQueryable<T> query,
+        public static IPageWithCounts<T> ToPageWithCounts<T>(this IOrderedQueryable<T> query,
             int pageNumber, int itemsPerPage,
             Func<IQueryable<T>, IEnumerable<T>> itemsEnumerator,
             Func<IQueryable<T>, int> itemsCounter)
@@ -166,7 +166,7 @@ namespace ToPage
         }
 
         /// <summary>
-        /// Creates a <see cref="PageWithCounts{T}"/> from the query.
+        /// Creates an <see cref="IPageWithCounts{T}"/> from the query.
         /// </summary>
         /// <typeparam name="T">The query's item type.</typeparam>
         /// <param name="query">Query to build the page from.</param>
@@ -189,7 +189,7 @@ namespace ToPage
         /// Thrown when the <paramref name="query"/> returns more than <see cref="int.MaxValue"/> items.
         /// </exception>
         /// <returns>The specified page from the query.</returns>
-        public static async Task<PageWithCounts<T>> ToPageWithCountsAsync<T>(this IOrderedQueryable<T> query,
+        public static async Task<IPageWithCounts<T>> ToPageWithCountsAsync<T>(this IOrderedQueryable<T> query,
             int pageNumber, int itemsPerPage,
             Func<IQueryable<T>, Task<IEnumerable<T>>> itemsEnumerator,
             Func<IQueryable<T>, Task<int>> itemsCounter)
