@@ -11,10 +11,8 @@
     <PackageTags>paging entityframework entityframeworkcore</PackageTags>
     <RepositoryType>git</RepositoryType>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Version>2.0.0</Version>
-    <PackageReleaseNotes>ToPage version 2.0.0 contains breaking changes:
-All ToPage* extension methods return IPage&lt;T&gt; or IPageWithCounts&lt;T&gt; rather than their concrete implementations.
-Page&lt;T&gt; and PageWithCounts&lt;T&gt; constructors throw exceptions when null or out of range arguments are passed to them.</PackageReleaseNotes>
+    <Version>2.0.1</Version>
+    <PackageReleaseNotes>Page.Empty&lt;T&gt; and Page.EmptyWithCounts&lt;T&gt; now return IPage&lt;T&gt; and IPageWithCounts&lt;T&gt; respectively (as they should have always been).</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
